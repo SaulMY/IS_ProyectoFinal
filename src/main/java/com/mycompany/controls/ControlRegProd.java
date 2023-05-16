@@ -3,7 +3,6 @@
 
 package com.mycompany.controls;
 import com.mycompany.entities.Product;
-import java.io.File;
 import java.io.FileWriter;
 import java.io.PrintWriter;
 import java.time.LocalDate;
@@ -19,7 +18,7 @@ public class ControlRegProd {
     //se chequea que no haya productos duplicados
     
     //metodo para registrar un nuevo producto
-    public void newProduct(String code, String name, String description, int price, int promoPrice, String benefits[], String imgUrl, LocalDate discStar, LocalDate discEnd){
+    public void newProduct(String code, String name, String description, int price, int promoPrice, String[] benefits, String imgUrl, LocalDate discStar, LocalDate discEnd){
         //se usa el contructor para crear un nuevo producto a la lista de productos
         product = new Product(code, name, description, price, promoPrice, benefits, imgUrl, discStar, discEnd);
         productsList.add(product);
@@ -62,4 +61,10 @@ public class ControlRegProd {
             }
         }
     }
+    
+    //Metodo para leer desde un archivo txt
+    public void readFromFile(String name){
+        
+    }
+    
 }

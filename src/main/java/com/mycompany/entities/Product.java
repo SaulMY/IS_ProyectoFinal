@@ -11,7 +11,7 @@ public class Product {
     private String description;
     private int price;
     private int promoPrice;
-    private String benefits[];//falta por agregar en el control e intefaz
+    private String[] benefits;//falta por agregar en el control e intefaz
     private String imgUrl;
     private LocalDate discStar;
     private LocalDate discEnd;
