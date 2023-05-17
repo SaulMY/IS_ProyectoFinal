@@ -15,6 +15,7 @@ public class Product {
     private String imgUrl;
     private LocalDate discStar;
     private LocalDate discEnd;
+    private boolean promo;
     
     //Constructores
     public Product(){//Default const
@@ -105,6 +106,14 @@ public class Product {
 
     public LocalDate getDiscFin() {
         return discEnd;
+    }
+
+    public boolean isPromo() {
+        return promo;
+    }
+
+    public void setPromo(boolean promo) {
+        this.promo = promo;
     }
     
 }

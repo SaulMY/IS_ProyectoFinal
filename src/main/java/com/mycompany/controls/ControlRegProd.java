@@ -6,6 +6,7 @@ import com.mycompany.entities.Product;
 import java.io.FileWriter;
 import java.io.PrintWriter;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.LinkedList;
 import javax.swing.JOptionPane;
 
@@ -67,4 +68,71 @@ public class ControlRegProd {
         
     }
     
+    //Metodo para buscar datos en la lista
+    public int searchCode(String code){
+        int index1 = 0;
+        for (Product prod: productsList){
+            if (prod.getCode().equals(code)){
+                index1 = productsList.indexOf(prod);
+                return  (index1);
+            }
+        }
+        return(-1);
+    }
+    public int searchName(String name){
+        int index2 = 0;
+        for (Product prod: productsList){
+            if (prod.getName().equals(name)){
+                index2 = productsList.indexOf(prod);
+                return (index2);
+            }
+        }
+        return (-1);
+    }
+    
+    //metodo para obtener los datos del objeto producto
+    
+    public String getNombre(int index){
+        return (productsList.get(index).getName());
+    }
+    
+    public String getCode(int index){
+        return (productsList.get(index).getCode());
+    }
+    
+    public String getDesc(int index){
+        return (productsList.get(index).getDescription());
+    }
+    
+    public String getPrice(int index){
+        return (String.valueOf(productsList.get(index).getPrice()));
+    }
+    
+    public String getPricePromo(int index){
+        return (String.valueOf(productsList.get(index).getPromoPrice()));
+    }
+    
+    public String getDate1(int index){
+        LocalDate date = productsList.get(index).getDiscStar();
+        return (date.format(DateTimeFormatter.ISO_LOCAL_DATE));
+    }
+    
+    public String getDate2(int index){
+        LocalDate date = productsList.get(index).getDiscFin();
+        return (date.format(DateTimeFormatter.ISO_LOCAL_DATE));
+    }
+    
+    public String getImg(int index){
+        return (productsList.get(index).getImgUrl());
+    }
+    
+    public String getBene(int index){
+        String string = new String();
+        String[] arr = productsList.get(index).getBenefits();
+        
+        for (int i = 0; i < productsList.get(index).getBenefits().length; i++){
+            string = string + arr[i] + " ";
+        }
+        return (string);
+    }
 }

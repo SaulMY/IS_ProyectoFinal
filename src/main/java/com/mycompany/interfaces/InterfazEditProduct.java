@@ -2,7 +2,6 @@ package com.mycompany.interfaces;
 
 import com.mycompany.controls.ControlRegProd;
 import java.awt.Color;
-import java.awt.Component;
 import java.io.File;
 import static java.lang.Integer.parseInt;
 import java.time.LocalDate;
@@ -12,16 +11,18 @@ import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import javax.swing.border.LineBorder;
 
-public class InterfazRegProduct extends javax.swing.JPanel {
+public class InterfazEditProduct extends javax.swing.JPanel {
 
     ControlRegProd regProduct = new ControlRegProd();
     
-    public InterfazRegProduct(ControlRegProd controlProd) {
+    public InterfazEditProduct(ControlRegProd controlProd) {
         this.regProduct = controlProd;
         initComponents();
         jScrollPane1.getVerticalScrollBar().setUnitIncrement(16);
-        
-        
+        if (searchPanel.isVisible()){
+            dataPanel.setVisible(false);
+            jScrollPane1.setVisible(false);
+        }
         
     }
 
@@ -34,8 +35,13 @@ public class InterfazRegProduct extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        searchPanel = new javax.swing.JPanel();
+        jLabel11 = new javax.swing.JLabel();
+        searchButton = new javax.swing.JButton();
+        searchCodeField = new javax.swing.JTextField();
+        jLabel12 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jPanel1 = new javax.swing.JPanel();
+        dataPanel = new javax.swing.JPanel();
         header = new javax.swing.JLabel();
         instructions = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
@@ -64,12 +70,59 @@ public class InterfazRegProduct extends javax.swing.JPanel {
         saveButton = new javax.swing.JButton();
         fileChoose = new javax.swing.JButton();
         imgView = new javax.swing.JLabel();
+        enablePromo = new javax.swing.JCheckBox();
 
         setMinimumSize(new java.awt.Dimension(750, 1125));
         setPreferredSize(new java.awt.Dimension(750, 1125));
 
+        jLabel11.setText("Ingrese el  codigo del producto a editar:");
+
+        searchButton.setText("BUSCAR");
+        searchButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchButtonActionPerformed(evt);
+            }
+        });
+
+        jLabel12.setText("Codigo:");
+
+        javax.swing.GroupLayout searchPanelLayout = new javax.swing.GroupLayout(searchPanel);
+        searchPanel.setLayout(searchPanelLayout);
+        searchPanelLayout.setHorizontalGroup(
+            searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(searchPanelLayout.createSequentialGroup()
+                .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(searchPanelLayout.createSequentialGroup()
+                        .addGap(330, 330, 330)
+                        .addComponent(searchButton))
+                    .addGroup(searchPanelLayout.createSequentialGroup()
+                        .addGap(218, 218, 218)
+                        .addComponent(jLabel12)
+                        .addGap(18, 18, 18)
+                        .addComponent(searchCodeField, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(searchPanelLayout.createSequentialGroup()
+                        .addGap(30, 30, 30)
+                        .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 402, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(222, Short.MAX_VALUE))
+        );
+        searchPanelLayout.setVerticalGroup(
+            searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(searchPanelLayout.createSequentialGroup()
+                .addGap(35, 35, 35)
+                .addComponent(jLabel11)
+                .addGap(84, 84, 84)
+                .addGroup(searchPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(searchCodeField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel12))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 91, Short.MAX_VALUE)
+                .addComponent(searchButton)
+                .addGap(48, 48, 48))
+        );
+
         jScrollPane1.setAutoscrolls(true);
         jScrollPane1.setHorizontalScrollBar(null);
+
+        dataPanel.setPreferredSize(new java.awt.Dimension(750, 1080));
 
         header.setText("jLabel1");
 
@@ -151,103 +204,115 @@ public class InterfazRegProduct extends javax.swing.JPanel {
             }
         });
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(115, 115, 115)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel6)
-                    .addComponent(jLabel7)
-                    .addComponent(jLabel8)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addGap(18, 18, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(nameField)
-                    .addComponent(jScrollPane2)
-                    .addComponent(date2Field)
-                    .addComponent(date1Field)
-                    .addComponent(promoField)
-                    .addComponent(priceField)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(imgField, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
-                        .addComponent(fileChoose))
-                    .addComponent(codeField))
+        enablePromo.setText("Agregar promocion.");
+
+        javax.swing.GroupLayout dataPanelLayout = new javax.swing.GroupLayout(dataPanel);
+        dataPanel.setLayout(dataPanelLayout);
+        dataPanelLayout.setHorizontalGroup(
+            dataPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, dataPanelLayout.createSequentialGroup()
+                .addGroup(dataPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, dataPanelLayout.createSequentialGroup()
+                        .addGap(173, 173, 173)
+                        .addGroup(dataPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, Short.MAX_VALUE)
+                        .addGroup(dataPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(nameField)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 260, Short.MAX_VALUE)
+                            .addComponent(priceField)
+                            .addComponent(codeField)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, dataPanelLayout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(dataPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addGap(18, 18, 18)
+                        .addGroup(dataPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(enablePromo)
+                            .addGroup(dataPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(date2Field)
+                                .addComponent(date1Field)
+                                .addComponent(promoField)
+                                .addGroup(dataPanelLayout.createSequentialGroup()
+                                    .addComponent(imgField, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
+                                    .addComponent(fileChoose))))))
                 .addGap(434, 434, 434))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+            .addGroup(dataPanelLayout.createSequentialGroup()
+                .addGroup(dataPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(dataPanelLayout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(header))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGroup(dataPanelLayout.createSequentialGroup()
                         .addGap(61, 61, 61)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(dataPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 518, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(headAche)
                             .addComponent(jointAche)
                             .addComponent(jLabel10)
                             .addComponent(allergi1)
                             .addComponent(allergi2)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGroup(dataPanelLayout.createSequentialGroup()
                                 .addGap(271, 271, 271)
                                 .addComponent(saveButton))
                             .addComponent(instructions)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(220, 220, 220)
+                    .addGroup(dataPanelLayout.createSequentialGroup()
+                        .addGap(221, 221, 221)
                         .addComponent(imgView, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        dataPanelLayout.setVerticalGroup(
+            dataPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(dataPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(header, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(19, 19, 19)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(instructions)
                 .addGap(38, 38, 38)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(dataPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(codeField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(dataPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(nameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(dataPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(dataPanelLayout.createSequentialGroup()
                         .addComponent(jLabel3)
                         .addGap(85, 85, 85)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addGroup(dataPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(priceField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel4))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(promoField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel5))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(date1Field, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel6))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(date2Field, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel7))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(imgField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel8)
-                            .addComponent(fileChoose)))
+                            .addComponent(jLabel4)))
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
+                .addComponent(enablePromo)
+                .addGap(18, 18, 18)
+                .addGroup(dataPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(promoField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5))
+                .addGap(18, 18, 18)
+                .addGroup(dataPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(date1Field, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel6))
+                .addGap(18, 18, 18)
+                .addGroup(dataPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(date2Field, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel7))
+                .addGap(18, 18, 18)
+                .addGroup(dataPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(imgField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel8)
+                    .addComponent(fileChoose))
                 .addGap(31, 31, 31)
                 .addComponent(imgView, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addComponent(jLabel9)
                 .addGap(18, 18, 18)
                 .addComponent(headAche)
@@ -264,19 +329,56 @@ public class InterfazRegProduct extends javax.swing.JPanel {
                 .addGap(55, 55, 55))
         );
 
-        jScrollPane1.setViewportView(jPanel1);
+        jScrollPane1.setViewportView(dataPanel);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 750, Short.MAX_VALUE)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(searchPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1125, Short.MAX_VALUE)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addComponent(searchPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 806, Short.MAX_VALUE)))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void searchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchButtonActionPerformed
+        // TODO add your handling code here:
+        int index = regProduct.searchCode(searchCodeField.getText());
+        if ( index >= 0){
+            dataPanel.setVisible(true);
+            jScrollPane1.setVisible(true);
+            searchPanel.setVisible(false);
+            JOptionPane.showMessageDialog(null, "Producto encontrado.");
+            fillFields(index);
+        }else{
+            JOptionPane.showMessageDialog(null, "Producto no encontrado.");
+        }
+    }//GEN-LAST:event_searchButtonActionPerformed
+
+    private void fileChooseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fileChooseActionPerformed
+        // Se debe agregar un file chooser:
+        JFileChooser fc = new JFileChooser();
+        if (evt.getSource() == fileChoose) {
+            int returnVal = fc.showOpenDialog(fc);
+            if (returnVal == JFileChooser.APPROVE_OPTION) {
+                File file = fc.getSelectedFile();
+                String path = file.getAbsolutePath();
+                // use the path here
+                imgField.setText(path);
+                //actualizamos el visualizador de imagenes
+                ImageIcon icon = new ImageIcon(path);
+                imgView.setIcon(icon);
+            }
+        }
+    }//GEN-LAST:event_fileChooseActionPerformed
 
     private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
         // El boton de guardar va a mandar una actualizacion a la lista de productos
@@ -311,39 +413,21 @@ public class InterfazRegProduct extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_allergi1ActionPerformed
 
-    private void imgFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imgFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_imgFieldActionPerformed
-
-    private void fileChooseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fileChooseActionPerformed
-        // Se debe agregar un file chooser:
-        JFileChooser fc = new JFileChooser();
-        if (evt.getSource() == fileChoose) {
-            int returnVal = fc.showOpenDialog(fc);
-            if (returnVal == JFileChooser.APPROVE_OPTION) {
-                File file = fc.getSelectedFile();
-                String path = file.getAbsolutePath();
-                // use the path here
-                imgField.setText(path);
-                //actualizamos el visualizador de imagenes
-                ImageIcon icon = new ImageIcon(path);
-                imgView.setIcon(icon);
-            }
-        }
-    }//GEN-LAST:event_fileChooseActionPerformed
-
     private void headAcheActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_headAcheActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_headAcheActionPerformed
 
-    private void codeFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_codeFieldActionPerformed
+    private void imgFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imgFieldActionPerformed
         // TODO add your handling code here:
-        
-    }//GEN-LAST:event_codeFieldActionPerformed
+    }//GEN-LAST:event_imgFieldActionPerformed
 
     private void priceFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_priceFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_priceFieldActionPerformed
+
+    private void codeFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_codeFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_codeFieldActionPerformed
 
     private void resetFields(){
         
@@ -424,13 +508,47 @@ public class InterfazRegProduct extends javax.swing.JPanel {
         
     }
     
+    public void fillFields (int index){
+        String bene = new String();
+        codeField.setText(regProduct.getCode(index));
+        nameField.setText(regProduct.getNombre(index));
+        priceField.setText(regProduct.getPrice(index));
+        descText.setText(regProduct.getDesc(index));
+        promoField.setText(regProduct.getPricePromo(index));
+        imgField.setText(regProduct.getImg(index));
+        date1Field.setText(regProduct.getDate1(index));
+        date2Field.setText(regProduct.getDate2(index));
+        
+        bene = "Dolor de cabeza";
+        if(regProduct.getBene(index).contains(bene)){
+            headAche.setSelected(true);
+        }
+        bene = "Dolor articular.";
+        if(regProduct.getBene(index).contains(bene)){
+            headAche.setSelected(true);
+        }
+        bene = "Alergia 1";
+        if(regProduct.getBene(index).contains(bene)){
+            allergi1.setSelected(true);
+        }
+        bene = "Alergia 2";
+        if(regProduct.getBene(index).contains(bene)){
+            allergi2.setSelected(true);
+        }
+        
+        ImageIcon icon = new ImageIcon(regProduct.getImg(index));
+        imgView.setIcon(icon);
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JCheckBox allergi1;
     private javax.swing.JCheckBox allergi2;
     private javax.swing.JTextField codeField;
+    private javax.swing.JPanel dataPanel;
     private javax.swing.JTextField date1Field;
     private javax.swing.JTextField date2Field;
     private javax.swing.JTextArea descText;
+    private javax.swing.JCheckBox enablePromo;
     private javax.swing.JButton fileChoose;
     private javax.swing.JCheckBox headAche;
     private javax.swing.JLabel header;
@@ -439,6 +557,8 @@ public class InterfazRegProduct extends javax.swing.JPanel {
     private javax.swing.JLabel instructions;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -447,7 +567,6 @@ public class InterfazRegProduct extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JCheckBox jointAche;
@@ -455,5 +574,8 @@ public class InterfazRegProduct extends javax.swing.JPanel {
     private javax.swing.JTextField priceField;
     private javax.swing.JTextField promoField;
     private javax.swing.JButton saveButton;
+    private javax.swing.JButton searchButton;
+    private javax.swing.JTextField searchCodeField;
+    private javax.swing.JPanel searchPanel;
     // End of variables declaration//GEN-END:variables
 }

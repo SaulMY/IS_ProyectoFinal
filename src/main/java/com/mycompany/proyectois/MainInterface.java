@@ -1,7 +1,9 @@
 package com.mycompany.proyectois;
 
 import com.formdev.flatlaf.intellijthemes.FlatLightFlatIJTheme;
+import com.mycompany.controls.ControlRegProd;
 import com.mycompany.interfaces.Home;
+import com.mycompany.interfaces.InterfazEditProduct;
 import com.mycompany.interfaces.InterfazRegProduct;
 import java.awt.BorderLayout;
 import static javax.swing.GroupLayout.Alignment.CENTER;
@@ -12,6 +14,8 @@ public class MainInterface extends javax.swing.JFrame {
     /**
      * Creates new form MainInterface
      */
+    ControlRegProd controlProd = new ControlRegProd();
+    
     public MainInterface() {
         initComponents();
         
@@ -288,12 +292,14 @@ public class MainInterface extends javax.swing.JFrame {
 
     private void addProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addProdActionPerformed
         // Este lo hace saul
-        InterfazRegProduct regProd = new InterfazRegProduct();
+        InterfazRegProduct regProd = new InterfazRegProduct(controlProd);
         ShowPanel(regProd);
     }//GEN-LAST:event_addProdActionPerformed
 
     private void editProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editProdActionPerformed
         // Este lo hace saul
+        InterfazEditProduct regProd = new InterfazEditProduct(controlProd);
+        ShowPanel(regProd);
     }//GEN-LAST:event_editProdActionPerformed
 
     private void delUsrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delUsrActionPerformed
