@@ -3,6 +3,10 @@ package com.mycompany.proyectois;
 import com.formdev.flatlaf.intellijthemes.FlatLightFlatIJTheme;
 import com.mycompany.controls.ControlRegProd;
 import com.mycompany.interfaces.Home;
+import com.mycompany.interfaces.InterfaceAddUsr;
+import com.mycompany.interfaces.InterfaceEditUsr;
+import com.mycompany.interfaces.InterfaceNewUser;
+import com.mycompany.interfaces.InterfazDelProduct;
 import com.mycompany.interfaces.InterfazEditProduct;
 import com.mycompany.interfaces.InterfazRegProduct;
 import java.awt.BorderLayout;
@@ -85,7 +89,7 @@ public class MainInterface extends javax.swing.JFrame {
         });
 
         addUsr.setBackground(new java.awt.Color(242, 242, 242));
-        addUsr.setText("Añadir ususario");
+        addUsr.setText("Añadir cliente");
         addUsr.setBorder(null);
         addUsr.setBorderPainted(false);
         addUsr.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -97,14 +101,19 @@ public class MainInterface extends javax.swing.JFrame {
         });
 
         editUsr.setBackground(new java.awt.Color(242, 242, 242));
-        editUsr.setText("Editar ususario");
+        editUsr.setText("Editar cliente");
         editUsr.setBorder(null);
         editUsr.setBorderPainted(false);
         editUsr.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         editUsr.setPreferredSize(new java.awt.Dimension(270, 40));
+        editUsr.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editUsrActionPerformed(evt);
+            }
+        });
 
         delUsr.setBackground(new java.awt.Color(242, 242, 242));
-        delUsr.setText("Eliminar usuario");
+        delUsr.setText("Eliminar cliente");
         delUsr.setBorder(null);
         delUsr.setBorderPainted(false);
         delUsr.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -144,6 +153,11 @@ public class MainInterface extends javax.swing.JFrame {
         delProd.setBorder(null);
         delProd.setBorderPainted(false);
         delProd.setPreferredSize(new java.awt.Dimension(270, 40));
+        delProd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                delProdActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout menuBarLayout = new javax.swing.GroupLayout(menuBar);
         menuBar.setLayout(menuBarLayout);
@@ -238,6 +252,8 @@ public class MainInterface extends javax.swing.JFrame {
 
     private void addUsrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addUsrActionPerformed
         // TODO add your handling code here:
+        InterfaceAddUsr resCostumer = new InterfaceAddUsr();
+        ShowPanel(resCostumer);
     }//GEN-LAST:event_addUsrActionPerformed
 
     private void addProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addProdActionPerformed
@@ -271,6 +287,18 @@ public class MainInterface extends javax.swing.JFrame {
         Home principal = new Home();
         ShowPanel(principal);
     }//GEN-LAST:event_principalActionPerformed
+
+    private void editUsrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editUsrActionPerformed
+        // TODO add your handling code here:
+        InterfaceEditUsr editCostumer = new InterfaceEditUsr();
+        ShowPanel(editCostumer);
+    }//GEN-LAST:event_editUsrActionPerformed
+
+    private void delProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delProdActionPerformed
+        // TODO add your handling code here:
+        InterfazDelProduct regProd = new InterfazDelProduct(controlProd);
+        ShowPanel(regProd);
+    }//GEN-LAST:event_delProdActionPerformed
 
     //aditional functions
     private void ShowPanel(JPanel panel){

@@ -20,10 +20,10 @@ public class InterfazEditProduct extends javax.swing.JPanel {
         this.regProduct = controlProd;
         initComponents();
         jScrollPane1.getVerticalScrollBar().setUnitIncrement(16);
-        if (searchPanel.isVisible()){
-            dataPanel.setVisible(false);
-            jScrollPane1.setVisible(false);
-        }
+        
+        dataPanel.setVisible(false);
+        jScrollPane1.setVisible(false);
+        
         
     }
 

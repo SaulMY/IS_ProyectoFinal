@@ -93,7 +93,18 @@ public class ControlRegProd {
         return (-1);
     }
     
-    //metodo para obtener los datos del objeto producto
+    //Metodo para borrar datos en la lista
+    public int deleteCode(String code){
+        int index1 = 0;
+        for (Product prod: productsList){
+            if (prod.getCode().equals(code)){
+                index1 = productsList.indexOf(prod);
+                productsList.remove(index1);
+                return (index1);
+            }
+        }
+        return(-1);
+    }
     
     public String getNombre(int index){
         return (productsList.get(index).getName());
