@@ -5,6 +5,7 @@ import java.awt.Color;
 import java.io.File;
 import static java.lang.Integer.parseInt;
 import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
@@ -35,6 +36,7 @@ public class InterfazEditProduct extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jMenuItem1 = new javax.swing.JMenuItem();
         searchPanel = new javax.swing.JPanel();
         jLabel11 = new javax.swing.JLabel();
         searchButton = new javax.swing.JButton();
@@ -70,7 +72,9 @@ public class InterfazEditProduct extends javax.swing.JPanel {
         saveButton = new javax.swing.JButton();
         fileChoose = new javax.swing.JButton();
         imgView = new javax.swing.JLabel();
-        enablePromo = new javax.swing.JCheckBox();
+        enablePromo = new javax.swing.JToggleButton();
+
+        jMenuItem1.setText("jMenuItem1");
 
         setMinimumSize(new java.awt.Dimension(750, 1125));
         setPreferredSize(new java.awt.Dimension(750, 1125));
@@ -121,8 +125,7 @@ public class InterfazEditProduct extends javax.swing.JPanel {
 
         jScrollPane1.setAutoscrolls(true);
         jScrollPane1.setHorizontalScrollBar(null);
-
-        dataPanel.setPreferredSize(new java.awt.Dimension(750, 1080));
+        jScrollPane1.setPreferredSize(new java.awt.Dimension(752, 1082));
 
         header.setText("jLabel1");
 
@@ -138,9 +141,9 @@ public class InterfazEditProduct extends javax.swing.JPanel {
 
         jLabel5.setText("Precio de promocion:");
 
-        jLabel6.setText("Fecha de inicio de la promocion:");
+        jLabel6.setText("Fecha de inicio de la promocion  (yyyy-mm-dd):");
 
-        jLabel7.setText("Fecha de fin de la promocion:");
+        jLabel7.setText("Fecha de fin de la promocion  (yyyy-mm-dd):");
 
         jLabel8.setText("Imagen del producto:");
 
@@ -204,45 +207,30 @@ public class InterfazEditProduct extends javax.swing.JPanel {
             }
         });
 
-        enablePromo.setText("Agregar promocion.");
+        enablePromo.setText("Habilitar datos de promocion");
+        enablePromo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                enablePromoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout dataPanelLayout = new javax.swing.GroupLayout(dataPanel);
         dataPanel.setLayout(dataPanelLayout);
         dataPanelLayout.setHorizontalGroup(
             dataPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, dataPanelLayout.createSequentialGroup()
-                .addGroup(dataPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, dataPanelLayout.createSequentialGroup()
-                        .addGap(173, 173, 173)
-                        .addGroup(dataPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, Short.MAX_VALUE)
-                        .addGroup(dataPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(nameField)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 260, Short.MAX_VALUE)
-                            .addComponent(priceField)
-                            .addComponent(codeField)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, dataPanelLayout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(dataPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING))
-                        .addGap(18, 18, 18)
-                        .addGroup(dataPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(enablePromo)
-                            .addGroup(dataPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(date2Field)
-                                .addComponent(date1Field)
-                                .addComponent(promoField)
-                                .addGroup(dataPanelLayout.createSequentialGroup()
-                                    .addComponent(imgField, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
-                                    .addComponent(fileChoose))))))
+                .addGap(173, 173, 173)
+                .addGroup(dataPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, Short.MAX_VALUE)
+                .addGroup(dataPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(nameField)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 260, Short.MAX_VALUE)
+                    .addComponent(priceField)
+                    .addComponent(codeField))
                 .addGap(434, 434, 434))
             .addGroup(dataPanelLayout.createSequentialGroup()
                 .addGroup(dataPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -259,12 +247,31 @@ public class InterfazEditProduct extends javax.swing.JPanel {
                             .addComponent(allergi1)
                             .addComponent(allergi2)
                             .addGroup(dataPanelLayout.createSequentialGroup()
-                                .addGap(271, 271, 271)
-                                .addComponent(saveButton))
+                                .addGap(160, 160, 160)
+                                .addComponent(imgView, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(instructions)))
                     .addGroup(dataPanelLayout.createSequentialGroup()
-                        .addGap(221, 221, 221)
-                        .addComponent(imgView, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(311, 311, 311)
+                        .addComponent(saveButton))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, dataPanelLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(dataPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel8)
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel7))
+                        .addGap(18, 18, 18)
+                        .addGroup(dataPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(enablePromo)
+                            .addGroup(dataPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(date2Field)
+                                .addComponent(date1Field)
+                                .addComponent(promoField)
+                                .addGroup(dataPanelLayout.createSequentialGroup()
+                                    .addComponent(imgField, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
+                                    .addComponent(fileChoose))))
+                        .addGap(14, 14, 14)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         dataPanelLayout.setVerticalGroup(
@@ -291,7 +298,7 @@ public class InterfazEditProduct extends javax.swing.JPanel {
                             .addComponent(priceField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel4)))
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
+                .addGap(45, 45, 45)
                 .addComponent(enablePromo)
                 .addGap(18, 18, 18)
                 .addGroup(dataPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -324,9 +331,9 @@ public class InterfazEditProduct extends javax.swing.JPanel {
                 .addComponent(allergi1)
                 .addGap(18, 18, 18)
                 .addComponent(allergi2)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
                 .addComponent(saveButton)
-                .addGap(55, 55, 55))
+                .addGap(80, 80, 80))
         );
 
         jScrollPane1.setViewportView(dataPanel);
@@ -383,6 +390,7 @@ public class InterfazEditProduct extends javax.swing.JPanel {
     private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
         // El boton de guardar va a mandar una actualizacion a la lista de productos
         String[] benefits = new String[10];
+        int index = regProduct.searchCode(codeField.getText());
         if(checkFields()){
             if (headAche.isSelected()){
                 benefits[1]="Dolor de cabeza.";
@@ -401,9 +409,28 @@ public class InterfazEditProduct extends javax.swing.JPanel {
                 System.out.println(benefits[i] + "\n");
             }
 
-            regProduct.newProduct(codeField.getText(), nameField.getText(), descText.getText(), parseInt(priceField.getText()), parseInt(promoField.getText()), benefits, imgField.getText(), LocalDate.parse(date1Field.getText()), LocalDate.parse(date2Field.getText()));
-            JOptionPane.showMessageDialog(null, "Producto guardado.");
-            resetFields();
+            try{
+                if (enablePromo.isSelected()) {
+                    regProduct.editProductP(index, codeField.getText(), nameField.getText(), descText.getText(), parseInt(priceField.getText()), parseInt(promoField.getText()), benefits, imgField.getText(), LocalDate.parse(date1Field.getText()), LocalDate.parse(date2Field.getText()));
+                } else {
+                    regProduct.editProduct(index, codeField.getText(), nameField.getText(), descText.getText(), parseInt(priceField.getText()), benefits, imgField.getText());
+                }
+                JOptionPane.showMessageDialog(null, "Producto guardado.");
+                resetFields();
+                dataPanel.setVisible(false);
+                jScrollPane1.setVisible(false);
+                searchPanel.setVisible(true);
+            }catch(NumberFormatException e1){
+                System.out.println("Entrada numerica invalida");
+                JOptionPane.showMessageDialog(null, "Error: Entrada numerica invalida.");
+                checkInts();
+                checkDates();
+            }catch(DateTimeParseException e1){
+                System.out.println("Fecha ingresada invalida");
+                JOptionPane.showMessageDialog(null, "Error: Formato de fecha invalido.");
+                checkDates();
+                checkInts();
+            }
         } else {
             JOptionPane.showMessageDialog(null, "Error: Aun hay campos por rellenar.");
         }
@@ -428,6 +455,17 @@ public class InterfazEditProduct extends javax.swing.JPanel {
     private void codeFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_codeFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_codeFieldActionPerformed
+
+    private void enablePromoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enablePromoActionPerformed
+        // TODO add your handling code here:
+        if(enablePromo.isSelected()){
+            enablePromo();
+            enablePromo.setText("Deshabilitar datos de promocion");
+        }else{
+            disablePromo();
+            enablePromo.setText("Habilitar datos de promocion");
+        }
+    }//GEN-LAST:event_enablePromoActionPerformed
 
     private void resetFields(){
         
@@ -474,35 +512,94 @@ public class InterfazEditProduct extends javax.swing.JPanel {
         }else {
             priceField.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
         }
-        if (promoField.getText().trim().isEmpty()){
-            promoField.setBorder(new LineBorder(Color.RED, 2));
-            count++;
-        }else {
-            promoField.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
-        }
+       
         if (imgField.getText().trim().isEmpty()){
             imgField.setBorder(new LineBorder(Color.RED, 2));
             count++;
         }else {
             imgField.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
         }
-        if (date1Field.getText().trim().isEmpty()){
-            date1Field.setBorder(new LineBorder(Color.RED, 2));
-            count++;
-        }else {
+        
+        if (enablePromo.isSelected()){
+            if (date1Field.getText().trim().isEmpty()){
+                date1Field.setBorder(new LineBorder(Color.RED, 2));
+                count++;
+            }else {
+                date1Field.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
+            }
+            if (date2Field.getText().trim().isEmpty()){
+                date2Field.setBorder(new LineBorder(Color.RED, 2));
+                count++;
+            }else {
+                date2Field.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
+            }
+            if (promoField.getText().trim().isEmpty()){
+                promoField.setBorder(new LineBorder(Color.RED, 2));
+                count++;
+            }else {
+                promoField.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
+            }
+        }else{
             date1Field.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
-        }
-        if (date2Field.getText().trim().isEmpty()){
-            date2Field.setBorder(new LineBorder(Color.RED, 2));
-            count++;
-        }else {
             date2Field.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
+            promoField.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
         }
+        
         if (count > 0){
             return (false);
         }
         return (true);
     }
+    
+    private void disablePromo(){
+        promoField.setEnabled(false);
+        date1Field.setEnabled(false);
+        date2Field.setEnabled(false);
+        promoField.setText("");
+        date1Field.setText("");
+        date2Field.setText("");
+    }
+    
+    private void enablePromo(){
+        promoField.setEnabled(true);
+        date1Field.setEnabled(true);
+        date2Field.setEnabled(true);
+    }
+    
+    private void checkInts(){
+        try{
+            Integer.valueOf(priceField.getText());
+        }catch(NumberFormatException e2){
+            System.out.println("Error en dato numerico 1");
+            priceField.setBorder(new LineBorder(Color.orange, 2));
+        }
+        if (enablePromo.isSelected()){
+            try{
+                Integer.valueOf(promoField.getText());
+            }catch(NumberFormatException e3){
+                System.out.println("Error en dato numerico 2");
+                promoField.setBorder(new LineBorder(Color.ORANGE, 2));
+            }
+        }
+    }
+    
+    private void checkDates(){
+        if (enablePromo.isSelected()){
+            try{
+                LocalDate.parse(date1Field.getText());
+            }catch(DateTimeParseException e2){
+                System.out.println("Error en fecha 1");
+                date1Field.setBorder(new LineBorder(Color.orange, 2));
+            }
+            try{
+                LocalDate.parse(date2Field.getText());
+            }catch(DateTimeParseException e3){
+                System.out.println("Error en fecha 2");
+                date2Field.setBorder(new LineBorder(Color.orange, 2));
+            }
+        }
+    }
+    
     
     public void resetStiles (){
         
@@ -514,10 +611,7 @@ public class InterfazEditProduct extends javax.swing.JPanel {
         nameField.setText(regProduct.getNombre(index));
         priceField.setText(regProduct.getPrice(index));
         descText.setText(regProduct.getDesc(index));
-        promoField.setText(regProduct.getPricePromo(index));
         imgField.setText(regProduct.getImg(index));
-        date1Field.setText(regProduct.getDate1(index));
-        date2Field.setText(regProduct.getDate2(index));
         
         bene = "Dolor de cabeza";
         if(regProduct.getBene(index).contains(bene)){
@@ -525,7 +619,7 @@ public class InterfazEditProduct extends javax.swing.JPanel {
         }
         bene = "Dolor articular.";
         if(regProduct.getBene(index).contains(bene)){
-            headAche.setSelected(true);
+            jointAche.setSelected(true);
         }
         bene = "Alergia 1";
         if(regProduct.getBene(index).contains(bene)){
@@ -538,6 +632,18 @@ public class InterfazEditProduct extends javax.swing.JPanel {
         
         ImageIcon icon = new ImageIcon(regProduct.getImg(index));
         imgView.setIcon(icon);
+        
+        if (regProduct.isPromo(index)==true){
+            promoField.setText(regProduct.getPricePromo(index));
+            date1Field.setText(regProduct.getDate1(index));
+            date2Field.setText(regProduct.getDate2(index));
+            
+            enablePromo.setSelected(true);
+            enablePromo.setText("Deshabilitar datos de promocion.");
+            //disablePromo();
+            enablePromo();
+        }
+        
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -548,7 +654,7 @@ public class InterfazEditProduct extends javax.swing.JPanel {
     private javax.swing.JTextField date1Field;
     private javax.swing.JTextField date2Field;
     private javax.swing.JTextArea descText;
-    private javax.swing.JCheckBox enablePromo;
+    private javax.swing.JToggleButton enablePromo;
     private javax.swing.JButton fileChoose;
     private javax.swing.JCheckBox headAche;
     private javax.swing.JLabel header;
@@ -567,6 +673,7 @@ public class InterfazEditProduct extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JCheckBox jointAche;

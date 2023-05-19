@@ -6,6 +6,7 @@ import java.awt.Component;
 import java.io.File;
 import static java.lang.Integer.parseInt;
 import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
@@ -20,8 +21,7 @@ public class InterfazRegProduct extends javax.swing.JPanel {
         this.regProduct = controlProd;
         initComponents();
         jScrollPane1.getVerticalScrollBar().setUnitIncrement(16);
-        
-        
+        disablePromo();
         
     }
 
@@ -64,9 +64,10 @@ public class InterfazRegProduct extends javax.swing.JPanel {
         saveButton = new javax.swing.JButton();
         fileChoose = new javax.swing.JButton();
         imgView = new javax.swing.JLabel();
+        enablePromo = new javax.swing.JToggleButton();
 
         setMinimumSize(new java.awt.Dimension(750, 1125));
-        setPreferredSize(new java.awt.Dimension(750, 1125));
+        setPreferredSize(new java.awt.Dimension(750, 1170));
 
         jScrollPane1.setAutoscrolls(true);
         jScrollPane1.setHorizontalScrollBar(null);
@@ -85,9 +86,9 @@ public class InterfazRegProduct extends javax.swing.JPanel {
 
         jLabel5.setText("Precio de promocion:");
 
-        jLabel6.setText("Fecha de inicio de la promocion:");
+        jLabel6.setText("Fecha de inicio de la promocion (yyyy-mm-dd):");
 
-        jLabel7.setText("Fecha de fin de la promocion:");
+        jLabel7.setText("Fecha de fin de la promocion (yyyy-mm-dd):");
 
         jLabel8.setText("Imagen del producto:");
 
@@ -151,35 +152,50 @@ public class InterfazRegProduct extends javax.swing.JPanel {
             }
         });
 
+        enablePromo.setText("Habilitar datos de promocion");
+        enablePromo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                enablePromoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(115, 115, 115)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel6)
-                    .addComponent(jLabel7)
-                    .addComponent(jLabel8)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addGap(18, 18, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(nameField)
-                    .addComponent(jScrollPane2)
-                    .addComponent(date2Field)
-                    .addComponent(date1Field)
-                    .addComponent(promoField)
-                    .addComponent(priceField)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(imgField, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
-                        .addComponent(fileChoose))
-                    .addComponent(codeField))
+                        .addGap(173, 173, 173)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(nameField)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 260, Short.MAX_VALUE)
+                            .addComponent(priceField)
+                            .addComponent(codeField)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap(33, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel8)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel7)
+                            .addComponent(jLabel6))
+                        .addGap(18, 18, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(enablePromo)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(date2Field)
+                                .addComponent(date1Field)
+                                .addComponent(promoField)
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addComponent(imgField, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
+                                    .addComponent(fileChoose))))))
                 .addGap(434, 434, 434))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -195,13 +211,13 @@ public class InterfazRegProduct extends javax.swing.JPanel {
                             .addComponent(jLabel10)
                             .addComponent(allergi1)
                             .addComponent(allergi2)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(271, 271, 271)
-                                .addComponent(saveButton))
                             .addComponent(instructions)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(220, 220, 220)
-                        .addComponent(imgView, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(221, 221, 221)
+                        .addComponent(imgView, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(331, 331, 331)
+                        .addComponent(saveButton)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -226,28 +242,30 @@ public class InterfazRegProduct extends javax.swing.JPanel {
                         .addGap(85, 85, 85)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(priceField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel4))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(promoField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel5))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(date1Field, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel6))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(date2Field, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel7))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(imgField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel8)
-                            .addComponent(fileChoose)))
+                            .addComponent(jLabel4)))
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(31, 31, 31)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
+                .addComponent(enablePromo)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(promoField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(date1Field, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel6))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(date2Field, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel7))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(imgField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel8)
+                    .addComponent(fileChoose))
+                .addGap(25, 25, 25)
                 .addComponent(imgView, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addComponent(jLabel9)
                 .addGap(18, 18, 18)
                 .addComponent(headAche)
@@ -259,9 +277,9 @@ public class InterfazRegProduct extends javax.swing.JPanel {
                 .addComponent(allergi1)
                 .addGap(18, 18, 18)
                 .addComponent(allergi2)
-                .addGap(18, 18, 18)
+                .addGap(28, 28, 28)
                 .addComponent(saveButton)
-                .addGap(55, 55, 55))
+                .addGap(45, 45, 45))
         );
 
         jScrollPane1.setViewportView(jPanel1);
@@ -295,13 +313,25 @@ public class InterfazRegProduct extends javax.swing.JPanel {
                 benefits[4]="Alergia 2";
             }
 
-            for (int i = 1; i==benefits.length; i++){
-                System.out.println(benefits[i] + "\n");
+            try{
+                if (enablePromo.isSelected()) {
+                    regProduct.newProductP(codeField.getText(), nameField.getText(), descText.getText(), parseInt(priceField.getText()), parseInt(promoField.getText()), benefits, imgField.getText(), LocalDate.parse(date1Field.getText()), LocalDate.parse(date2Field.getText()));
+                } else {
+                    regProduct.newProduct(codeField.getText(), nameField.getText(), descText.getText(), parseInt(priceField.getText()), benefits, imgField.getText());
+                }
+                JOptionPane.showMessageDialog(null, "Producto guardado.");
+                resetFields();
+            }catch(NumberFormatException e1){
+                System.out.println("Entrada numerica invalida");
+                JOptionPane.showMessageDialog(null, "Error: Entrada numerica invalida.");
+                checkInts();
+                checkDates();
+            }catch(DateTimeParseException e1){
+                System.out.println("Fecha ingresada invalida");
+                JOptionPane.showMessageDialog(null, "Error: Formato de fecha invalido.");
+                checkDates();
+                checkInts();
             }
-
-            regProduct.newProduct(codeField.getText(), nameField.getText(), descText.getText(), parseInt(priceField.getText()), parseInt(promoField.getText()), benefits, imgField.getText(), LocalDate.parse(date1Field.getText()), LocalDate.parse(date2Field.getText()));
-            JOptionPane.showMessageDialog(null, "Producto guardado.");
-            resetFields();
         } else {
             JOptionPane.showMessageDialog(null, "Error: Aun hay campos por rellenar.");
         }
@@ -345,6 +375,17 @@ public class InterfazRegProduct extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_priceFieldActionPerformed
 
+    private void enablePromoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enablePromoActionPerformed
+        // TODO add your handling code here:
+        if(enablePromo.isSelected()){
+            enablePromo();
+            enablePromo.setText("Deshabilitar datos de promocion");
+        }else{
+            disablePromo();
+            enablePromo.setText("Habilitar datos de promocion");
+        }
+    }//GEN-LAST:event_enablePromoActionPerformed
+
     private void resetFields(){
         
         codeField.setText("");
@@ -367,60 +408,118 @@ public class InterfazRegProduct extends javax.swing.JPanel {
     
     private boolean checkFields(){
         int count = 0;
-        if (codeField.getText().trim().isEmpty()){
+        if (codeField.getText().isEmpty()){
             codeField.setBorder(new LineBorder(Color.RED, 2));
             count++;
         } else {
             codeField.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
         }
-        if (nameField.getText().trim().isEmpty()){
+        if (nameField.getText().isEmpty()){
             nameField.setBorder(new LineBorder(Color.RED, 2));
             count++;
         }else {
             nameField.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
         }
-        if (descText.getText().trim().isEmpty()){
+        if (descText.getText().isEmpty()){
             jScrollPane2.setBorder(new LineBorder(Color.RED, 2));;
         }else {
             jScrollPane2.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("jScrollPane.border"));
         }
-        if (priceField.getText().trim().isEmpty()){
+        if (priceField.getText().isEmpty()){
             priceField.setBorder(new LineBorder(Color.RED, 2));
             count++;
         }else {
             priceField.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
         }
-        if (promoField.getText().trim().isEmpty()){
-            promoField.setBorder(new LineBorder(Color.RED, 2));
-            count++;
-        }else {
-            promoField.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
-        }
-        if (imgField.getText().trim().isEmpty()){
+       
+        if (imgField.getText().isEmpty()){
             imgField.setBorder(new LineBorder(Color.RED, 2));
             count++;
         }else {
             imgField.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
         }
-        if (date1Field.getText().trim().isEmpty()){
-            date1Field.setBorder(new LineBorder(Color.RED, 2));
-            count++;
-        }else {
+        
+        if (enablePromo.isSelected()){
+            if (date1Field.getText().isEmpty()){
+                date1Field.setBorder(new LineBorder(Color.RED, 2));
+                count++;
+            }else {
+                date1Field.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
+            }
+            if (date2Field.getText().isEmpty()){
+                date2Field.setBorder(new LineBorder(Color.RED, 2));
+                count++;
+            }else {
+                date2Field.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
+            }
+            if (promoField.getText().isEmpty()){
+                promoField.setBorder(new LineBorder(Color.RED, 2));
+                count++;
+            }else {
+                promoField.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
+            }
+        }else{
             date1Field.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
-        }
-        if (date2Field.getText().trim().isEmpty()){
-            date2Field.setBorder(new LineBorder(Color.RED, 2));
-            count++;
-        }else {
             date2Field.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
+            promoField.setBorder(UIManager.getLookAndFeel().getDefaults().getBorder("TextField.border"));
         }
+        
         if (count > 0){
             return (false);
         }
         return (true);
     }
     
-    public void resetStiles (){
+    private void checkInts(){
+        try{
+            Integer.valueOf(priceField.getText());
+        }catch(NumberFormatException e2){
+            System.out.println("Error en dato numerico 1");
+            priceField.setBorder(new LineBorder(Color.orange, 2));
+        }
+        if (enablePromo.isSelected()){
+            try{
+                Integer.valueOf(promoField.getText());
+            }catch(NumberFormatException e3){
+                System.out.println("Error en dato numerico 2");
+                promoField.setBorder(new LineBorder(Color.ORANGE, 2));
+            }
+        }
+    }
+    
+    private void checkDates(){
+        if (enablePromo.isSelected()){
+            try{
+                LocalDate.parse(date1Field.getText());
+            }catch(DateTimeParseException e2){
+                System.out.println("Error en fecha 1");
+                date1Field.setBorder(new LineBorder(Color.orange, 2));
+            }
+            try{
+                LocalDate.parse(date2Field.getText());
+            }catch(DateTimeParseException e3){
+                System.out.println("Error en fecha 2");
+                date2Field.setBorder(new LineBorder(Color.orange, 2));
+            }
+        }
+    }
+    
+    private void disablePromo(){
+        promoField.setEnabled(false);
+        date1Field.setEnabled(false);
+        date2Field.setEnabled(false);
+        promoField.setText("");
+        date1Field.setText("");
+        date2Field.setText("");
+    }
+    
+    private void enablePromo(){
+        promoField.setEnabled(true);
+        date1Field.setEnabled(true);
+        date2Field.setEnabled(true);
+    }
+     
+     public void resetStiles (){
         
     }
     
@@ -431,6 +530,7 @@ public class InterfazRegProduct extends javax.swing.JPanel {
     private javax.swing.JTextField date1Field;
     private javax.swing.JTextField date2Field;
     private javax.swing.JTextArea descText;
+    private javax.swing.JToggleButton enablePromo;
     private javax.swing.JButton fileChoose;
     private javax.swing.JCheckBox headAche;
     private javax.swing.JLabel header;

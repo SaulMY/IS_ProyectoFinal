@@ -2,9 +2,10 @@
   para que se desarrolle el programa adecuadamente*/
 package com.mycompany.entities;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public class Product {
+public class Product implements Serializable{
     
     private String code;
     private String name;
@@ -20,6 +21,16 @@ public class Product {
     //Constructores
     public Product(){//Default const
     }
+    
+    public Product(String code, String name, String description, int price, String[] benefits, String imgUrl) {
+        this.code = code;
+        this.name = name;
+        this.description = description;
+        this.price = price;
+        this.benefits = benefits;
+        this.imgUrl = imgUrl;
+        promo = false;
+    }
 
     public Product(String code, String name, String description, int price, int promoPrice, String[] benefits, String imgUrl, LocalDate discStar, LocalDate discEnd) {
         this.code = code;
@@ -31,7 +42,10 @@ public class Product {
         this.imgUrl = imgUrl;
         this.discStar = discStar;
         this.discEnd = discEnd;
+        promo = true;
     }
+    
+    
     
     //setters
     public void setCode(String code) {

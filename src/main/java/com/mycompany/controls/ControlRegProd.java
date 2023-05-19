@@ -3,12 +3,15 @@
 
 package com.mycompany.controls;
 import com.mycompany.entities.Product;
-import java.io.FileWriter;
-import java.io.PrintWriter;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.LinkedList;
-import javax.swing.JOptionPane;
 
 public class ControlRegProd {
     
@@ -19,53 +22,53 @@ public class ControlRegProd {
     //se chequea que no haya productos duplicados
     
     //metodo para registrar un nuevo producto
-    public void newProduct(String code, String name, String description, int price, int promoPrice, String[] benefits, String imgUrl, LocalDate discStar, LocalDate discEnd){
+    public void newProductP(String code, String name, String description, int price, int promoPrice, String[] benefits, String imgUrl, LocalDate discStar, LocalDate discEnd){
         //se usa el contructor para crear un nuevo producto a la lista de productos
         product = new Product(code, name, description, price, promoPrice, benefits, imgUrl, discStar, discEnd);
         productsList.add(product);
     }
     
+    public void newProduct(String code, String name, String description, int price, String[] benefits, String imgUrl){
+        //se usa el contructor para crear un nuevo producto a la lista de productos
+        product = new Product(code, name, description, price, benefits, imgUrl);
+        productsList.add(product);
+    }
+    
+    //metodo para editar un producto en la lista mediante el indice
+    public void editProductP (int index, String code, String name, String description, int price, int promoPrice, String[] benefits, String imgUrl, LocalDate discStar, LocalDate discEnd){
+        product = new Product(code, name, description, price, promoPrice, benefits, imgUrl, discStar, discEnd);
+        productsList.set(index, product);
+    }
+    public void editProduct (int index, String code, String name, String description, int price, String[] benefits, String imgUrl){
+        product = new Product(code, name, description, price, benefits, imgUrl);
+        productsList.set(index, product);
+    }
+    
     //metodo para guardarlo en un archivo txt
-    public void saveOnFile(){
-        
-        FileWriter file = null;
-        PrintWriter pw = null;
-        
-        try {
-            file = new FileWriter(fileName, true);
-            pw = new PrintWriter(file);
-            
-            //TODO code goes here
-            pw.println("Codigo: " + product.getCode());
-            pw.println("Nombre: " + product.getName());
-            pw.println("Descripcion: " + product.getDescription());
-            pw.println("Precio: " + product.getPrice());
-            pw.println("Benefits: " + product.getBenefits());
-            pw.println("Imagen: " + product.getImgUrl());
-            pw.println("Fecha1: " + product.getDiscStar());
-            pw.println("Fecha2: " + product.getDiscFin());
-            pw.println("\r\n");
-            
-        }//for a problem in the open or writing
-        catch(Exception e){
-            System.out.println("Error al guardar");
-            JOptionPane.showMessageDialog(null, "Error al guardar.");
-        } finally {
-            try {
-                if (null != file) {
-                    file.close();
-                }
-            }
-            catch(Exception e2){
-                e2.printStackTrace();
-                JOptionPane.showMessageDialog(null, "Error al cerrar el archivo.");
-            }
+    public void saveOnFile() throws FileNotFoundException, IOException{
+        try{
+            FileOutputStream fileOut = new FileOutputStream("F:\\T.HECTOR S.M.Y\\ESTUDIO\\BUAP\\QUINTO SEMESTRE\\INGENIERIA DE SOFTWARE\\PROYECTO FINAL\\ProyectoIS\\obj.txt");
+            ObjectOutputStream objectOut = new ObjectOutputStream(fileOut);
+            objectOut.writeObject(productsList);
+            objectOut.close();
+            System.out.println("Lista de productos guardada en elarchivo");
+        } catch (Exception e){
+            e.printStackTrace();
+            System.out.println("Error al guardar.");
         }
     }
     
     //Metodo para leer desde un archivo txt
-    public void readFromFile(String name){
-        
+    public void readFile(){
+        try{
+            FileInputStream fileIn = new FileInputStream("F:\\T.HECTOR S.M.Y\\ESTUDIO\\BUAP\\QUINTO SEMESTRE\\INGENIERIA DE SOFTWARE\\PROYECTO FINAL\\ProyectoIS\\obj.txt");
+            ObjectInputStream objectIn = new ObjectInputStream(fileIn);
+            productsList = (LinkedList) objectIn.readObject();
+            objectIn.close();
+        }catch(Exception e){
+            e.printStackTrace();
+            System.out.println("Error al leer archivo.");
+        }
     }
     
     //Metodo para buscar datos en la lista
@@ -134,5 +137,9 @@ public class ControlRegProd {
             string = string + arr[i] + " ";
         }
         return (string);
+    }
+    
+    public boolean isPromo (int index){
+        return(productsList.get(index).isPromo());
     }
 }

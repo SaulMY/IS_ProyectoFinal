@@ -6,6 +6,9 @@ import com.mycompany.interfaces.Home;
 import com.mycompany.interfaces.InterfazEditProduct;
 import com.mycompany.interfaces.InterfazRegProduct;
 import java.awt.BorderLayout;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import static javax.swing.GroupLayout.Alignment.CENTER;
 import javax.swing.JPanel;
 
@@ -19,12 +22,20 @@ public class MainInterface extends javax.swing.JFrame {
     public MainInterface() {
         initComponents();
         
+        controlProd.readFile();
+        
         Home home = new Home();
         
         content.removeAll();
         content.add(home, BorderLayout.CENTER);
         content.revalidate();
         content.repaint();
+        
+        try {
+            controlProd.saveOnFile();
+        } catch (IOException ex) {
+            Logger.getLogger(MainInterface.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -47,11 +58,6 @@ public class MainInterface extends javax.swing.JFrame {
         addProd = new javax.swing.JButton();
         editProd = new javax.swing.JButton();
         delProd = new javax.swing.JButton();
-        regBuy = new javax.swing.JButton();
-        regTest = new javax.swing.JButton();
-        rep1 = new javax.swing.JButton();
-        rep2 = new javax.swing.JButton();
-        notificacion = new javax.swing.JButton();
         content = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -64,7 +70,6 @@ public class MainInterface extends javax.swing.JFrame {
         menuBar.setPreferredSize(new java.awt.Dimension(270, 700));
 
         logoLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        logoLabel.setText("LOGO");
 
         jSeparator1.setForeground(new java.awt.Color(51, 51, 51));
 
@@ -140,46 +145,6 @@ public class MainInterface extends javax.swing.JFrame {
         delProd.setBorderPainted(false);
         delProd.setPreferredSize(new java.awt.Dimension(270, 40));
 
-        regBuy.setBackground(new java.awt.Color(242, 242, 242));
-        regBuy.setText("Registrar compra");
-        regBuy.setBorder(null);
-        regBuy.setBorderPainted(false);
-        regBuy.setPreferredSize(new java.awt.Dimension(270, 40));
-
-        regTest.setBackground(new java.awt.Color(242, 242, 242));
-        regTest.setText("Registrar testimonio");
-        regTest.setBorder(null);
-        regTest.setBorderPainted(false);
-        regTest.setPreferredSize(new java.awt.Dimension(270, 40));
-
-        rep1.setBackground(new java.awt.Color(242, 242, 242));
-        rep1.setText("Llamar por descuento");
-        rep1.setBorder(null);
-        rep1.setBorderPainted(false);
-        rep1.setPreferredSize(new java.awt.Dimension(270, 40));
-        rep1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rep1ActionPerformed(evt);
-            }
-        });
-
-        rep2.setBackground(new java.awt.Color(242, 242, 242));
-        rep2.setText("Llamar por padecimiento");
-        rep2.setBorder(null);
-        rep2.setBorderPainted(false);
-        rep2.setPreferredSize(new java.awt.Dimension(270, 40));
-        rep2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rep2ActionPerformed(evt);
-            }
-        });
-
-        notificacion.setBackground(new java.awt.Color(242, 242, 242));
-        notificacion.setText("Notificaciones");
-        notificacion.setBorder(null);
-        notificacion.setBorderPainted(false);
-        notificacion.setPreferredSize(new java.awt.Dimension(270, 40));
-
         javax.swing.GroupLayout menuBarLayout = new javax.swing.GroupLayout(menuBar);
         menuBar.setLayout(menuBarLayout);
         menuBarLayout.setHorizontalGroup(
@@ -193,11 +158,6 @@ public class MainInterface extends javax.swing.JFrame {
                     .addComponent(addProd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(editProd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(delProd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(regBuy, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(regTest, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(rep1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(rep2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(notificacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(menuBarLayout.createSequentialGroup()
                         .addGap(6, 6, 6)
                         .addGroup(menuBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -227,16 +187,6 @@ public class MainInterface extends javax.swing.JFrame {
                 .addComponent(editProd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(delProd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(regBuy, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(regTest, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(rep1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(rep2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(notificacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -294,25 +244,27 @@ public class MainInterface extends javax.swing.JFrame {
         // Este lo hace saul
         InterfazRegProduct regProd = new InterfazRegProduct(controlProd);
         ShowPanel(regProd);
+        try {
+            controlProd.saveOnFile();
+        } catch (IOException ex) {
+            Logger.getLogger(MainInterface.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_addProdActionPerformed
 
     private void editProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editProdActionPerformed
         // Este lo hace saul
         InterfazEditProduct regProd = new InterfazEditProduct(controlProd);
         ShowPanel(regProd);
+        try {
+            controlProd.saveOnFile();
+        } catch (IOException ex) {
+            Logger.getLogger(MainInterface.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_editProdActionPerformed
 
     private void delUsrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delUsrActionPerformed
         // Este lo hace saul
     }//GEN-LAST:event_delUsrActionPerformed
-
-    private void rep1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rep1ActionPerformed
-        // Este lo hace saul
-    }//GEN-LAST:event_rep1ActionPerformed
-
-    private void rep2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rep2ActionPerformed
-        // Este lo hace saul
-    }//GEN-LAST:event_rep2ActionPerformed
 
     private void principalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_principalActionPerformed
         // TODO add your handling code here:
@@ -359,11 +311,6 @@ public class MainInterface extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel logoLabel;
     private javax.swing.JPanel menuBar;
-    private javax.swing.JButton notificacion;
     private javax.swing.JButton principal;
-    private javax.swing.JButton regBuy;
-    private javax.swing.JButton regTest;
-    private javax.swing.JButton rep1;
-    private javax.swing.JButton rep2;
     // End of variables declaration//GEN-END:variables
 }
